@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Link Form</title>
+</head>
+<body>
+  <form id="link-form">
+    <label for="link-input">Enter a link:</label><br>
+    <input type="text" id="link-input" name="link"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    document.getElementById('link-form').onsubmit = function(event) {
+      event.preventDefault();
+      var link = document.getElementById('link-input').value;
+      google.colab.kernel.invokeFunction('notebook.print_link', [link], {});
+    }
+  </script>
+</body>
+</html>
