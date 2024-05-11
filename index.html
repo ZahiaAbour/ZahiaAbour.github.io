@@ -14,7 +14,20 @@
     document.getElementById('link-form').onsubmit = function(event) {
       event.preventDefault();
       var link = document.getElementById('link-input').value;
-      google.colab.kernel.invokeFunction('notebook.print_link', [link], {});
+      sendDataToColab(link);
+    }
+
+    function sendDataToColab(link) {
+      fetch('http://localhost:8080', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ link: link })
+      })
+      .then(response => response.text())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
     }
   </script>
 </body>
